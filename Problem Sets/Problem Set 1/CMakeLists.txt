@@ -11,10 +11,13 @@
 cmake_minimum_required(VERSION 3.18)
 project(HW1 LANGUAGES CXX CUDA)
 
+# Find packages
 find_package(CUDA REQUIRED)
+find_package(OpenCV REQUIRED)
 
-# Include CUDA directories
+# Include directories for CUDA and OpenCV
 include_directories(${CUDA_INCLUDE_DIRS})
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 # Collect source files
 file(GLOB hdr *.hpp *.h)
@@ -24,5 +27,5 @@ set(HW1_files main.cpp reference_calc.cpp compare.cpp ${cu})
 # Create executable
 add_executable(HW1 ${HW1_files} ${hdr})
 
-# Link CUDA libraries
-target_link_libraries(HW1 ${CUDA_LIBRARIES})
+# Link CUDA and OpenCV libraries
+target_link_libraries(HW1 ${CUDA_LIBRARIES} ${OpenCV_LIBS})
