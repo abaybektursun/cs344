@@ -48,8 +48,8 @@ void rgba_to_greyscale(const uchar4* const rgbaImage,
   //First create a mapping from the 2D block and grid locations
   //to an absolute 2D location in the image, then use that to
   //calculate a 1D offset
-  pixel_x = blockIdx.x * blockDim.x + threadIdx.x;
-  pixel_y = blockIdx.y * blockDim.y + threadIdx.y;
+  u_char pixel_x = blockIdx.x * blockDim.x + threadIdx.x;
+  u_char pixel_y = blockIdx.y * blockDim.y + threadIdx.y;
 
   1D_offset = pixel_y * numCols + pixel_x;
 
