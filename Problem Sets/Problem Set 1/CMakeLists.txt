@@ -11,6 +11,11 @@
 cmake_minimum_required(VERSION 3.18)
 project(HW1 LANGUAGES CXX CUDA)
 
+find_package(CUDA REQUIRED)
+
+# Include CUDA directories
+include_directories(${CUDA_INCLUDE_DIRS})
+
 # Collect source files
 file(GLOB hdr *.hpp *.h)
 file(GLOB cu  *.cu)
@@ -18,3 +23,6 @@ set(HW1_files main.cpp reference_calc.cpp compare.cpp ${cu})
 
 # Create executable
 add_executable(HW1 ${HW1_files} ${hdr})
+
+# Link CUDA libraries
+target_link_libraries(HW1 ${CUDA_LIBRARIES})
